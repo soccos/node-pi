@@ -1,8 +1,8 @@
 .article-info
   if detailedTime
-    span= article.toc.toLocaleString()
+    span(style='color: #aaa;')= article.toc.toLocaleString()
   else
-    span= fromNow(article.toc)
+    span(style='color: #aaa;')= fromNow(article.toc)
   span &nbsp;&nbsp;&nbsp;&nbsp;
   span.oi.oi-dial(title="icon name" aria-hidden="true")
   a(href=`/a/${article._id}`)
