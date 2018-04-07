@@ -49,7 +49,7 @@ function submit(id) {
     url = '/a/'+id;
     method = 'PATCH';
   }
-  reqAPI('/a', 'POST', {article: article})
+  reqAPI(url, method, {article: article})
     .done(function() {
       screenTopAlert('提交成功');
     })

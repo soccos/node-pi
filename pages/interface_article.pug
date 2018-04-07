@@ -14,7 +14,6 @@ block content
         h3.text-center= article.title
         br
         p= article.abstract
-        br
         div!= markdown(article.content)
         div.text-center
           button.btn.btn-success#thumbUp(onclick=`thumbUp(${data.article._id})`)
