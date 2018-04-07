@@ -9,26 +9,26 @@ block content
         form
           form-group
             label.control-label 标题
-            input.form-control#title(type="text" placeholder="title")
+            input.form-control#title(type="text" placeholder="title" value=data.article?data.article.title||'')
             br
           form-group
             label.control-label 分类（,分隔）
-            input.form-control#cids(type="text" placeholder="cids")
+            input.form-control#cids(type="text" placeholder="cids" value=data.article?data.article.cids||'')
             -for(let f of data.forums)
               a(href=`/f/${f._id}`)=`[${f._id}] ${f.displayName}`
               span &nbsp;&nbsp;&nbsp;
             br
           form-group
             label.control-label 封面
-            input.form-control#cover(type="text" placeholder="cover")
+            input.form-control#cover(type="text" placeholder="cover" value=data.article?data.article.cover||'')
             br
           form-group
             label.control-label 摘要
-            textarea.form-control#abstract(type="text" placeholder="abstract" rows=5)
+            textarea.form-control#abstract(type="text" placeholder="abstract" rows=5)=data.article?data.article.abstract||''
             br
           form-group
             label.control-label 正文
-            textarea.form-control#content(type="text" placeholder="content" rows=20)
+            textarea.form-control#content(type="text" placeholder="content" rows=20)=data.article?data.article.description || ''
       .col-xs-12.col-md-12
         br
         button.btn.btn-success.btn-block(onclick=`submit(${data.article?data.article._id:''})`) 提交

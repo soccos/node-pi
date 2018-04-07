@@ -20,6 +20,8 @@ block content
           button.btn.btn-success.center-block#thumbUp(onclick=`thumbUp(${data.article._id})`)
             span.oi.oi-thumb-up(title="icon name" aria-hidden="true")
             span &nbsp;点赞
+          if data.user
+            a.btn.btn-success.center-block(href=`/m/add?a=${data.article._id}`)  
         br
         br
         br

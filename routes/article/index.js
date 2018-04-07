@@ -45,5 +45,15 @@ articleRouter
     await newArticle.save();
     await next();
   })
+  .patch('/:_id', async (ctx, next) => {
+    const {data, db, body, params} = ctx;
+    const {user} = data;
+    if(!user) ctx.throw(403, '权限不足');
+    const {_id} = params;
+    const {article} = body;
+    const targetArticle = await db.DocumentModel.findOne({_id});
+    await targetArticle.update(article);
+    await next();
+  })
   .use('/:_id/thumbUp', thumbUpRouter.routes(), thumbUpRouter.allowedMethods());
 module.exports = articleRouter;

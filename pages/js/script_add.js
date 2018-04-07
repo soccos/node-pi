@@ -25,7 +25,7 @@ function deleteImage(id) {
     })
 }
 
-function submit() {
+function submit(id) {
   var title = $('#title').val();
   var cover = $('#cover').val();
   var cids = $('#cids').val();
@@ -43,9 +43,15 @@ function submit() {
     abstract: abstract,
     content: content
   };
+  var url = '/a';
+  var method = 'POST';
+  if(id) {
+    url = '/a/'+id;
+    method = 'PATCH';
+  }
   reqAPI('/a', 'POST', {article: article})
     .done(function() {
-      screenTopAlert('上传成功');
+      screenTopAlert('提交成功');
     })
     .fail(function(data) {
       screenTopWarning(data.error);
