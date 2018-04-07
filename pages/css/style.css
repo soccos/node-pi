@@ -115,7 +115,7 @@ body{
   text-decoration: none;
 }
 .article-info span{
-  font-size: 1rem;
+  /*font-size: 1rem;*/
 }
 .article-info .oi{
   font-size: 0.8rem;
