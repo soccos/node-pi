@@ -14,7 +14,7 @@ block content
         h3.text-center= article.title
         br
         p= article.abstract
-        div!= markdown(article.content)
+        div.article-content!= markdown(article.content)
         div.text-center
           button.btn.btn-success#thumbUp(onclick=`thumbUp(${data.article._id})`)
             span.oi.oi-thumb-up(title="icon name" aria-hidden="true")
