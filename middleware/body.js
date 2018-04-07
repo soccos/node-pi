@@ -53,6 +53,7 @@ module.exports = async (ctx, next) => {
     try{
       ctx.body = ctx.common.rander(ctx.template, ctx.data);
     } catch(randerError) {
+      console.log(randerError);
       ctx.status = 500;
       ctx.data.error = randerError;
       ctx.body = ctx.common.rander('interface_error.pug', ctx.data);
