@@ -1,0 +1,24 @@
+extends bootstrap_base
+block head
+  title= `${data.forum.displayName} - NODE-PI`
+  meta(name="keywords" content=data.forum.displayName)
+  meta(name="description" content=data.forum.displayName)
+block forum
+  include module_forum
+block banner
+  //include module_banner
+block content
+  .container
+    .row
+      .col-xs-12.col-md-8
+        //.list 最新推荐
+        -const list = true;
+        -for(let article of data.articles)
+          include module_article_li
+        -const url = `/f/${data.forum._id}`;
+        include module_page
+
+
+      .col-xs-12.col-md-4
+        include module_article_list
+  include module_footer

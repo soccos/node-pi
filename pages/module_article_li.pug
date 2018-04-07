@@ -1,0 +1,14 @@
+.article
+  .row
+    .col-xs-12.col-md-12
+      include module_article_info
+    .col-xs-12.col-md-12
+      .article-title
+        a(href=`/a/${article._id}`)
+          h3= article.title
+    .col-xs-3.col-md-3(style='padding-right: 0').article-img
+      a(href=`/a/${article._id}`)
+        .article-img-div(style=`background-image:url('${article.cover}')`)
+    .col-xs-9.col-md-9.article-body
+      .article-abstract
+        p= article.abstract

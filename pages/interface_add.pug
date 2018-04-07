@@ -1,0 +1,72 @@
+extends bootstrap_base
+block head
+  title 上传
+block content
+  .container
+    .row
+      .col-xs-12.col-md-12
+        h2 文章上传
+        form
+          form-group
+            label.control-label 标题
+            input.form-control#title(type="text" placeholder="title")
+            br
+          form-group
+            label.control-label 分类（,分隔）
+            input.form-control#cids(type="text" placeholder="cids")
+            -for(let f of data.forums)
+              a(href=`/f/${f._id}`)=`[${f._id}] ${f.displayName}`
+              span &nbsp;&nbsp;&nbsp;
+            br
+          form-group
+            label.control-label 封面
+            input.form-control#cover(type="text" placeholder="cover")
+            br
+          form-group
+            label.control-label 摘要
+            textarea.form-control#abstract(type="text" placeholder="abstract" rows=5)
+            br
+          form-group
+            label.control-label 正文
+            textarea.form-control#content(type="text" placeholder="content" rows=20)
+      .col-xs-12.col-md-12
+        br
+        button.btn.btn-success.btn-block(onclick=`submit(${data.article?data.article._id:''})`) 提交
+      .col-xs-12.col-md-12
+        br
+        h2 资源上传
+        form
+          form-group
+            input#file(type="file")
+            p.help-block 选择文件即刻上传
+        .image-list
+          .row
+            -for(let r of data.resources)
+              .col-xs-6.col-md-3.text-center(style='margin-bottom: 4rem;')
+                img(src=`/upload/${r.path}/cover/${r._id}.jpg` style='width: 100%;')
+                h5.text-center= `/upload${r.path}/${r._id}.jpg`
+                h5.text-center= `/upload${r.path}/cover/${r._id}.jpg`
+                button(onclick=`deleteImage(${r._id})` style='text-align: right;') 删除
+      .col-xs-12.col-md-12
+        br
+        h2 增加分类
+        form
+          form-group
+            label.control-label 分类名
+            input.form-control#displayName(type="text")
+            br
+          form-group
+            label.control-label 颜色
+            input.form-control#color(type="text")
+          form-group
+            label.control-label 介绍
+            textarea.form-control#description(type="text" placeholder="content" rows=10)
+      .col-xs-12.col-md-12
+        br
+        button.btn.btn-success.btn-block(onclick=`addForum()`) 提交
+        br
+        br
+        br
+block scripts
+  script(src='/js/common.js')
+  script(src='/js/script_add.js')

@@ -1,0 +1,8 @@
+.container
+  .row.category-list
+    .col-12.col-lg-8
+      -for(let f of data.forums)
+        a(href=`/f/${f._id}` title=f.description)
+          span.label.label-default(style=`${f.color?`background-color: ${f.color}`: ''}`)= f.displayName
+            span= ` ${f.count===0?'':f.count}`
+        span &nbsp

@@ -1,0 +1,24 @@
+extends bootstrap_base
+block head
+  title NODE-PI
+  meta(name="keywords" content="nodejs,树莓派,rsapberry pi,javascript,物联网")
+  meta(name="description" content="分享树莓派环境运行nodejs的相关技术文章。")
+block forum
+  include module_forum
+block banner
+  //include module_banner
+block content
+  .container
+    .row
+      .col-xs-12.col-md-8
+        //.list 最新推荐
+        -const list = true;
+        -for(let article of data.articles)
+          include module_article_li
+        -const url = '';
+        include module_page
+
+
+      .col-xs-12.col-md-4
+        include module_article_list
+  include module_footer

@@ -1,0 +1,30 @@
+extends bootstrap_base
+block head
+  title 账号注册
+block content
+  .container
+    if data.code
+
+    else if data.email
+      br
+      h1 邮件发送成功！
+      h3 请前往邮箱&nbsp;
+        a(href='###').text-success#address=data.email
+        span &nbsp;查收邮件。
+    else
+      .row.justify-content-center.my-lg-4
+        .col-12.col-lg-4
+          .form-group
+            label(for="exampleInputEmail1") 邮箱地址
+            input.form-control(type="email" id="email" aria-describedby="emailHelp" placeholder="Enter email")
+            small.form-text.text-muted(id="emailHelp") We'll never share your email with anyone else.
+          .form-group
+            label(for="exampleInputPassword1") 密码
+            input.form-control(type="password" id="password" placeholder="Password")
+          .form-group
+            small.form-text.text-muted(id="emailHelp") 已有账号？
+              a(href='/login').text-success 去登录
+          button.btn.btn-success.btn-block#submit(onclick="submit()") 提交
+
+block scripts
+  script(src='/js/script_register.js')

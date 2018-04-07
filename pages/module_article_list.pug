@@ -1,0 +1,27 @@
+ul.nav.nav-tabs.aside-article-list
+  li.nav-item
+    a.nav-link.bg-eee.asideButton(i=0) 阅读量
+  li.nav-item
+    a.nav-link.asideButton(i=1) 点赞数
+  li.nav-item
+    a.nav-link.asideButton(i=2) 随机
+br
+-const {thumbUpArticles, visitArticles, randomArticles} = data.asideArticles;
+.asideArticles
+  -for(let i = 0; i < visitArticles.length; i++)
+    -const article = visitArticles[i];
+    .article-list
+      span(class=i < 3 ? 'bg-ffb8b8' : 'bg-82c2e2')= i + 1
+      a(href=`/a/${article._id}` title=`${article.visit}次阅读`)= article.title
+.asideArticles.hidden
+  -for(let i = 0; i < thumbUpArticles.length; i++)
+    -const article = thumbUpArticles[i];
+    .article-list
+      span(class=i < 3?'bg-ffb8b8': 'bg-82c2e2')= i+1
+      a(href=`/a/${article._id}` title=`${article.thumbUp}次点赞`)= article.title
+.asideArticles.hidden
+  -for(let i = 0; i < randomArticles.length; i++)
+    -const article = randomArticles[i];
+    .article-list
+      span(class='bg-82c2e2')= i + 1
+      a(href=`/a/${article._id}`)= article.title

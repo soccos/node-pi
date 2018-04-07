@@ -1,0 +1,23 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand.text-success(href="/") NODE-PI
+    .collapse.navbar-collapse#bs-example-navbar-collapse-1
+      ul.nav.navbar-nav
+        li(class=data.url==='/'?'active':'')
+          a(href="/") 主页
+        if data.user
+          li
+            a(href="/m") 管理
+          li
+            a(href="/logout") 退出
+      //form.navbar-form.navbar-right(method="GET" action="/search")
+      //  .form-group
+      //    input(name="keywords" type="text" class="form-control" placeholder="关键词")
+      //  span &nbsp;
+      //  button(type="submit" class="btn btn-default") 搜索

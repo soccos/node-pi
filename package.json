@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "startserver": "pm2 start server.js --name=chengdu",
+    "start": "supervisor server.js"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "colors": "^1.1.2",
+    "jquery": "3.3.1",
+    "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-favicon": "^2.0.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
+    "markdown": "^0.5.0",
+    "moment": "^2.22.0",
+    "mongoose": "^5.0.7",
+    "nodemailer": "^4.6.3",
+    "pug": "^2.0.0-rc.4"
+  }
+}
