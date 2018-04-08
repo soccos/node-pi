@@ -3,6 +3,7 @@ block head
   title= `${data.article.title} - NODE-PI`
   meta(name="keywords" content=data.article.title)
   meta(name="description" content=data.article.abstract)
+  link(rel="stylesheet" href="/highlight/styles/agate.css")
 block content
   -const article = data.article;
   .container
@@ -25,25 +26,9 @@ block content
         br
         br
         br
-        //#comment
-        //  .form-group
-        //    label(for="exampleFormControlTextarea1") 发表评论
-        //    textarea.form-control#exampleFormControlTextarea1(rows="5" placeholder="随便说几句...")
-        //    div(style="padding-top: 0.5rem;").text-right
-        //      button.btn.btn-success 发表
-        //  if data.comments.length !== 0
-        //    .list 最新评论
-        //  -for(let c of data.comments)
-        //    .media
-        //      a(href=`/u/${c.uid}`)
-        //        img.mr-3(src=`/avatar/${c.uid}` alt="Generic placeholder image")
-        //      .media-body
-        //        .mt-0(style="color: #999;")
-        //          a(href=`/u/${c.uid}`).text-success= c.user.name
-        //          span &nbsp;&nbsp;发表于&nbsp;&nbsp;
-        //          span 半个月前
-        //        span Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
   include module_footer
 block scripts
   script(src='/js/common.js')
   script(src='/js/script_article.js')
+  script(src="/highlight/highlight.pack.js")
+  script hljs.initHighlightingOnLoad();

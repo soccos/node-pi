@@ -1,4 +1,5 @@
 const pug = require('pug');
+const hljs = require('highlight.js');
 const path = require('path');
 const moment = require('moment');
 const MD = require('markdown-it')();
