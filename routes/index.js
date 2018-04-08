@@ -6,6 +6,7 @@ const managementRouter = require('./management');
 const resourceRouter = require('./resource');
 const logoutRouter = require('./logout');
 const forumRouter = require('./forum');
+const editorRouter = require('./editor');
 mainRouter
   .use('/', async (ctx, next) => {
     const {data, db} = ctx;
@@ -32,6 +33,7 @@ mainRouter
   .use('/f', forumRouter.routes(), forumRouter.allowedMethods())
   .use('/logout', logoutRouter.routes(), logoutRouter.allowedMethods())
   .use('/r', resourceRouter.routes(), resourceRouter.allowedMethods())
+  .use('/editor', editorRouter.routes(), editorRouter.allowedMethods())
   .use('/a', articleRouter.routes(), articleRouter.allowedMethods());
 module.exports = mainRouter;
 

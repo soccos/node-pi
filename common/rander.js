@@ -1,13 +1,13 @@
 const pug = require('pug');
 const path = require('path');
 const moment = require('moment');
-const MD = require('markdown').markdown;
+const MD = require('markdown-it')();
 moment.locale('zh-cn');
 const fromNow = (data) => {
   return moment(data).fromNow();
 };
 const markdown = (md) => {
-  return MD.toHTML(md);
+  return MD.render(md);
 };
 const render = (template, data) => {
   const options = {
