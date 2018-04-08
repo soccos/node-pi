@@ -15,6 +15,6 @@
   if article.forums.length !== 0
     span.oi.oi-tags(title="icon name" aria-hidden="true")
     -for(let f of article.forums)
-      a(href=`/c/${f._id}` title=f.description)
+      a(href=`/f/${f._id}` title=f.description)
         span!= `&nbsp;${f.displayName}&nbsp;`
     span &nbsp;&nbsp;&nbsp;&nbsp;
