@@ -59,4 +59,5 @@ module.exports = async (ctx, next) => {
       ctx.body = ctx.common.rander('interface_error.pug', ctx.data);
     }
   }
+  await ctx.middleware.logger(ctx);
 };

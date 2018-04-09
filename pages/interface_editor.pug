@@ -1,12 +1,12 @@
 extends bootstrap_base
 block head
   title 编辑器 - NODE-PI
-  -let title, cover, abstract, content, cids;
+  -const {title, cover, abstract, content, cids} = data.article || {};
 block content
   .container-fluid
     .row
       br
-      .col-xs-12.col-md-5
+      .col-xs-12.col-md-5.col-md-offset-1
         form
           form-group
             label.control-label 标题
@@ -21,7 +21,7 @@ block content
             textarea.form-control#content(type="text" placeholder="content" rows=20)=content
           form-group
             label.control-label 分类（,分隔）
-            input.form-control#cids(type="text" placeholder="cids" value=cids)
+            input.form-control#cids(type="text" placeholder="cids" value=cids?cids.join(','):'')
             -for(let f of data.forums)
               a(href=`/f/${f._id}`)=`[${f._id}] ${f.displayName}`
               span &nbsp;&nbsp;&nbsp;
@@ -30,11 +30,12 @@ block content
             label.control-label 封面
             input.form-control#cover(type="text" placeholder="cover" value=cover)
             br
-      .col-xs-12.col-md-5.col-md-offset-1(style='border: 1px solid #aaa;border-radius: 5px;min-height: 60rem;')
-        h3#title_.text-center
+      .col-xs-12.col-md-5(style='border: 1px solid #aaa;border-radius: 5px;min-height: 60rem;')
+        h2#title_.text-center
         p#abstract_
-        #content_.article-content
+        #content_.article-content!='<pre><code> console.log("hello");</code></pre>'
 block scripts
   script(src='/js/common.js')
   script(src='/markdown/markdown-it.js')
   script(src='/js/script_editor.js')
+

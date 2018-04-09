@@ -5,7 +5,7 @@ const favicon = require('koa-favicon');
 const koaBody = require('koa-body');
 const {upload} = require('./settings');
 const mainRouter = require('./routes');
-const {init, body, log, cookie} = require('./middleware');
+const {init, body, cookie} = require('./middleware');
 const colors = require('colors');
 const {mongodb} = require('./settings');
 const {key} = require('./settings/cookie');
@@ -30,11 +30,10 @@ try{
   app.use(staticServe('./resources'));
   app.use(staticServe('./node_modules'));
   app.use(favicon(__dirname + '/resources/default/favicon.ico'));
-  app.use(log);
   app.use(init);
+  app.use(body);
   app.use(cookie);
   app.use(mainRouter.routes());
-  app.use(body);  
   app.listen('6543');
   console.log(`server is running at 6543...`.green);
 } catch(err) {

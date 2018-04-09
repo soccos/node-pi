@@ -1,5 +1,4 @@
-const log = async (ctx, next) => {
-  await next();
+const log = async (ctx) => {
   const resTime = Date.now() - ctx.reqTime;
   const {method, status, data} = ctx;
   let url = ctx.url;

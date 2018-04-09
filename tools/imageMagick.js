@@ -35,9 +35,9 @@ fn.articleCoverify = (path, targetPath) => {
 };
 fn.articleImageify = (path, targetPath) => {
   if(linux) {
-    return spawnProcess('convert', [path, '-gravity', 'southeast', '-gravity', 'Center', '-quality', '90', targetPath]);
+    return spawnProcess('convert', [path, '-resize', `1920x1080^`, '-gravity', 'southeast', '-gravity', 'Center', '-quality', '90', targetPath]);
   }
-  return spawnProcess('magick', ['convert', path, '-gravity', 'southeast', '-gravity', 'Center', '-quality', '90', targetPath]);
+  return spawnProcess('magick', ['convert', path, '-resize', `1920x1080^`,'-gravity', 'southeast', '-gravity', 'Center', '-quality', '90', targetPath]);
 };
 
 fn.ensurePath = () => {
