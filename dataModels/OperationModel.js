@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
-const permissionSchema = new Schema({
+const operationSchema = new Schema({
   _id: Number,
-  operation: {
+  name: {
     type: String,
     required: true,
     unique: true
@@ -28,7 +28,7 @@ const permissionSchema = new Schema({
     index: 1
   }
 }, {
-  collection: 'permissions'
+  collection: 'Operations'
 });
-const PermissionModel = mongoose.model('permissions', permissionSchema);
-module.exports = PermissionModel;
+const OperationModel = mongoose.model('Operations', operationSchema);
+module.exports = OperationModel;

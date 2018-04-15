@@ -1,22 +1,22 @@
 module.exports = [
   {
     _id: 1,
-    operation: 'viewHome',
+    name: 'viewHome',
     description: 'view home'
   },
   {
     _id: 2,
-    operation: 'viewLogin',
+    name: 'viewLogin',
     description: 'view login'
   },
   {
     _id: 3,
-    operation: 'viewForum',
+    name: 'viewForum',
     description: 'view forum'
   },
   {
     _id: 4,
-    operation: 'viewArticle',
+    name: 'viewArticle',
     description: 'view article'
   }
 ];

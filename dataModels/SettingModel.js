@@ -3,7 +3,7 @@ const {Schema} = mongoose;
 const settingSchema = new Schema({
   type: {
     type: String,
-    enum: ['cookie', 'page', 'email', 'upload', 'server', 'cache'],
+    enum: ['dataId', 'cookie', 'page', 'email', 'upload', 'server', 'cache'],
     required: true,
     index: 1
   },
@@ -53,7 +53,17 @@ const settingSchema = new Schema({
   //-- cache --
   staticServe: Number,
   favicon: Number,
-  resource: Number
+  resource: Number,
+
+  //-- dataId --
+  article: Number,
+  comment: Number,
+  // resource: Number,
+  role: Number,
+  permission: Number,
+  // user: Number,
+  forum: Number
+
 
 }, {
   collection: 'settings'

@@ -38,5 +38,14 @@ module.exports = [
     staticServe: 604800,
     favicon: 604800,
     resource: 604800
+  },
+  {
+    type: 'dataId',
+    article: 2,
+    comment: 0,
+    resource: 0,
+    role: 6,
+    permission: 4,
+    forum: 0
   }
 ];

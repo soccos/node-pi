@@ -77,6 +77,9 @@ const mongoose = require('mongoose');
     //-- render data, handle error --
     app.use(middleware.body);
 
+    //-- permission --
+    app.use(middleware.permission);
+
     //-- routes --
     const router = require('./routes');
     app.use(router.routes());
@@ -88,21 +91,21 @@ const mongoose = require('mongoose');
   } catch (err) {
 
     console.log(err);
-    console.log(` An error occurred while starting server `.bgRed);
+    console.log(` an error occurred while starting server `.bgRed);
 
   }
 })();
 
 //-- initPermissions --
 async function initPermission() {
-  const PermissionModel = require('./dataModels/PermissionModel');
-  const permissions = await PermissionModel.find({});
-  const defaultPermissions = require('./default/defaultPermissions');
-  if(permissions.length !== defaultPermissions.length) {
-    console.log(`init permissions...`);
-    await Promise.all(defaultPermissions.map(async p => {
-      const permission = PermissionModel(p);
-      await permission.save();
+  const OperationModel = require('./dataModels/OperationModel');
+  const operations = await OperationModel.find({});
+  const defaultOperations = require('./default/defaultOperations');
+  if(operations.length === 0) {
+    console.log(`init operations...`);
+    await Promise.all(defaultOperations.map(async p => {
+      const operation = OperationModel(p);
+      await operation.save();
     }));
     console.log(`done.`);
   }
@@ -113,11 +116,11 @@ async function initRoles() {
   const RoleModel = require('./dataModels/RoleModel');
   const roles = await RoleModel.find({});
   const defaultRoles = require('./default/defaultRoles');
-  if(roles.length !== defaultRoles.length) {
+  if(roles.length === 0) {
     console.log(`init roles...`);
     await Promise.all(defaultRoles.map(async p => {
-      const permission = RoleModel(p);
-      await permission.save();
+      const role = RoleModel(p);
+      await role.save();
     }));
     console.log(`done.`);
   }
@@ -133,7 +136,7 @@ async function initServerSettings() {
     for(let s of settingsOfDB) {
       settings[s.type] = s;
     }
-  } else {
+  } else if(settingsOfDB.length === 0){
     console.log(`init settings...`);
     await Promise.all(defaultSettings.map(async s => {
       settings[s.type] = s;
@@ -141,6 +144,8 @@ async function initServerSettings() {
       await setting.save();
     }));
     console.log(`done.`);
+  } else {
+    throwErr(500, 'settings error');
   }
   return settings;
 }

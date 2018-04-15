@@ -24,4 +24,10 @@ module.exports = [
     name: 'default',
     description: 'default'
   },
+  {
+    _id: 6,
+    name: 'visitor',
+    description: 'visitor',
+    operations: [1]
+  }
 ];

@@ -1,4 +1,4 @@
-const common = require('../common');
+const common = require('../nodeModules');
 const db = require('../dataModels');
 const settings = require('../settings');
 const init = async (ctx, next) => {

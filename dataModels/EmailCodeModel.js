@@ -9,10 +9,12 @@ const emailCodeSchema = new Schema({
   email: {
     type: 'String',
     trim: true,
-    validate: [function(email) {
-      const reg = /[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]+/;
-      return reg.test(email);
-    }, '邮箱格式不正确']
+    validate: {
+      validator: function(v) {
+        return /[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]+/.test(v);
+      },
+      message: '邮箱格式不正确'
+    },
   },
   password: {
     hashType: {

@@ -11,7 +11,7 @@ const roleSchema = new Schema({
     type: String,
     required: true
   },
-  permission: {
+  operations: {
     type: [Number],
     default: [],
     index: 1
