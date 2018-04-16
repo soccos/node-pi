@@ -41,11 +41,11 @@ module.exports = [
   },
   {
     type: 'dataId',
-    article: 2,
+    article: 0,
     comment: 0,
     resource: 0,
-    role: 6,
-    permission: 4,
+    role: 1,
+    operation: 0,
     forum: 0
   }
 ];

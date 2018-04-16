@@ -65,5 +65,5 @@ userSecretSchema.pre('update', function(next) {
 });
 
 
-const UserModel = mongoose.model('users', userSecretSchema);
-module.exports = UserModel;
+const UserSecrets = mongoose.model('userSecrets', userSecretSchema);
+module.exports = UserSecrets;

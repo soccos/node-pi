@@ -2,6 +2,11 @@ const mongoose = require('../settings/mongodb');
 const Schema = mongoose.Schema;
 const forumSchema = new Schema({
   _id: Number,
+  parentId: {
+    type: Number,
+    default: null,
+    index: 1
+  },
   displayName: {
     type: String,
     unique: true,

@@ -60,7 +60,7 @@ const settingSchema = new Schema({
   comment: Number,
   // resource: Number,
   role: Number,
-  permission: Number,
+  operation: Number,
   // user: Number,
   forum: Number
 
@@ -68,6 +68,16 @@ const settingSchema = new Schema({
 }, {
   collection: 'settings'
 });
+
+settingSchema.statics.getNewId = async (type, number) => {
+  const SettingModel = mongoose.model('settings');
+  const dataId = await SettingModel.findOne({type: 'dataId'});
+  if(!dataId) throwErr(500, 'data id error');
+  const obj = {};
+  obj[type] = dataId[type] + number;
+  await dataId.update(obj);
+  return obj[type];
+};
 
 const SettingModel = mongoose.model('settings', settingSchema);
 module.exports = SettingModel;

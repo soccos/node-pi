@@ -96,7 +96,7 @@ const mongoose = require('mongoose');
   }
 })();
 
-//-- initPermissions --
+/*//-- initPermissions --
 async function initPermission() {
   const OperationModel = require('./dataModels/OperationModel');
   const operations = await OperationModel.find({});
@@ -107,6 +107,37 @@ async function initPermission() {
       const operation = OperationModel(p);
       await operation.save();
     }));
+    console.log(`done.`);
+  }
+}*/
+async function initPermission() {
+  const OperationModel = require('./dataModels/OperationModel');
+  const SettingModel = require('./dataModels/SettingModel');
+  const operations = require('./settings/operations');
+  const operationsOfDB = await OperationModel.find({});
+  if(operationsOfDB.length === 0) {
+    console.log(`init operations...`);
+    const arr = [];
+    const getOperation = (obj) => {
+      if(obj.operation) {
+        arr.push(obj.operation);
+      }
+      for(let o in obj) {
+        if(typeof(obj[o]) === 'object') {
+          getOperation(obj[o]);
+        }
+      }
+    };
+    getOperation(operations);
+    for(let name of arr) {
+      const _id = await SettingModel.getNewId('operation', 1);
+      const newOperation = OperationModel({
+        _id,
+        name,
+        description: name
+      });
+      await newOperation.save();
+    }
     console.log(`done.`);
   }
 }
