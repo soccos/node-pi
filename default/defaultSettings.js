@@ -29,9 +29,9 @@ module.exports = [
   },
   {
     _id: 'server',
-    name: 'NODE-PI',
+    name: 'TEST',
     github: 'https://github.com/soccos/node-pi.git',
-    port: 6543,
+    port: 6545,
     address: '0.0.0.0'
   },
   {

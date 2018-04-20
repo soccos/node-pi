@@ -167,6 +167,7 @@ async function initRoles() {
 //-- initServerSettings --
 async function initServerSettings() {
   const SettingModel = require('./dataModels/SettingModel');
+  await SettingModel.deleteMany({});
   const defaultSettings = require('./default/defaultSettings');
   const settingsOfDB = await SettingModel.find({});
   const settings = {};
