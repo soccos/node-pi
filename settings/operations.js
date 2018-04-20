@@ -53,5 +53,36 @@ module.exports = {
     GET: {
       operation: 'viewEditor'
     }
+  },
+  login: {
+    GET: {
+      operation: 'viewLogin'
+    },
+    POST: {
+      operation: 'login'
+    }
+  },
+  register: {
+    GET: {
+      operation: 'viewRegister'
+    },
+    POST: {
+      operation: 'register'
+    }
+  },
+  //-- send email --
+  send: {
+    email: {
+      register: {
+        POST: {
+          operation: 'sendRegisterEmail'
+        }
+      },
+      forgetPassword: {
+        POST: {
+          operation: 'sendForgetPasswordEmail'
+        }
+      }
+    }
   }
 };

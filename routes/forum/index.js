@@ -8,7 +8,7 @@ forumRouter
     data.forums = await db.ForumModel.find({}).sort({toc: 1});
     const page = query.page? parseInt(query.page): 0;
     const count = await db.DocumentModel.count({cids: _id, disabled: false});
-    const paging = ctx.common.paging(page, count);
+    const paging = ctx.nodeModules.paging(page, count);
     data.paging = paging;
     const articles = await db.DocumentModel.find({cids: _id, disabled: false}).sort({toc: -1}).skip(paging.start).limit(paging.perPage);
     data.articles = await Promise.all(articles.map(async article => {

@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 const operationSchema = new Schema({
-  _id: Number,
-  name: {
-    type: String,
-    required: true,
-    unique: true
-  },
+  _id: String,
   description: {
     type: String,
     required: true
@@ -28,7 +23,7 @@ const operationSchema = new Schema({
     index: 1
   }
 }, {
-  collection: 'Operations'
+  collection: 'operations'
 });
-const OperationModel = mongoose.model('Operations', operationSchema);
+const OperationModel = mongoose.model('operations', operationSchema);
 module.exports = OperationModel;

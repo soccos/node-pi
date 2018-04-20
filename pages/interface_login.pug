@@ -3,17 +3,20 @@ block head
   title 用户登录
 block content
   .container
-    .row.justify-content-center.my-lg-4
-      .col-12.col-lg-4
+    .row
+      .col-xs-12.col-md-4.col-md-offset-4
+        br
+        br
+        br
         .form-group
           label(for="exampleInputEmail1") 邮箱地址
           input.form-control(type="email" id="email" aria-describedby="emailHelp" placeholder="Enter email")
-          small.form-text.text-muted(id="emailHelp") We'll never share your email with anyone else.
+          small.text-muted We'll never share your email with anyone else.
         .form-group
           label(for="exampleInputPassword1") 密码
           input.form-control(type="password" id="password" placeholder="Password")
         .form-group
-          small.form-text.text-muted(id="emailHelp") 没有账号？
+          small.text-muted(id="emailHelp") 没有账号？
             a(href='/register').text-success 去注册
         button.btn.btn-success.btn-block#submit(onclick="submit()") 提交
 

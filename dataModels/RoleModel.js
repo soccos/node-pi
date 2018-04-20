@@ -1,18 +1,13 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 const roleSchema = new Schema({
-  _id: Number,
-  name: {
-    type: String,
-    required: true,
-    unique: true
-  },
+  _id: String,
   description: {
     type: String,
     required: true
   },
   operations: {
-    type: [Number],
+    type: [String],
     default: [],
     index: 1
   },

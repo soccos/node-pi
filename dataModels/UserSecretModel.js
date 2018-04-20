@@ -17,10 +17,6 @@ const userSecretSchema = new Schema({
     index: 1
   },
   password: {
-    hashType: {
-      type: String,
-      required: true
-    },
     salt: {
       type: String,
       required: true

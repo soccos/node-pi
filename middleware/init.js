@@ -1,4 +1,4 @@
-const common = require('../nodeModules');
+const nodeModules = require('../nodeModules');
 const db = require('../dataModels');
 const settings = require('../settings');
 const init = async (ctx, next) => {
@@ -6,7 +6,7 @@ const init = async (ctx, next) => {
     ctx.body = ctx.request.body
   }
   ctx.reqTime = Date.now();
-  ctx.common = common;
+  ctx.nodeModules = nodeModules;
   ctx.settings = settings;
   ctx.tools = {
     string: require('../tools/string'),

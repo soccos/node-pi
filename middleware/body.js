@@ -51,12 +51,12 @@ module.exports = async (ctx, next) => {
       ctx.data.error = '未找到资源'
     }
     try{
-      ctx.body = ctx.common.rander(ctx.template, ctx.data);
+      ctx.body = ctx.nodeModules.rander(ctx.template, ctx.data);
     } catch(randerError) {
       console.log(randerError);
       ctx.status = 500;
       ctx.data.error = randerError;
-      ctx.body = ctx.common.rander('interface_error.pug', ctx.data);
+      ctx.body = ctx.nodeModules.rander('interface_error.pug', ctx.data);
     }
   }
   await ctx.middleware.logger(ctx);

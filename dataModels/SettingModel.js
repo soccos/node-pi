@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 const settingSchema = new Schema({
-  type: {
+  _id: {
     type: String,
     enum: ['dataId', 'cookie', 'page', 'email', 'upload', 'server', 'cache'],
-    required: true,
-    index: 1
   },
 
   // --cookie--
@@ -19,6 +17,7 @@ const settingSchema = new Schema({
 
   // --email--
   expiryDate: Number,
+  oneDayCount: Number,
   host: String,
   port: Number,
   user: String,
@@ -59,8 +58,6 @@ const settingSchema = new Schema({
   article: Number,
   comment: Number,
   // resource: Number,
-  role: Number,
-  operation: Number,
   // user: Number,
   forum: Number
 
@@ -71,7 +68,7 @@ const settingSchema = new Schema({
 
 settingSchema.statics.getNewId = async (type, number) => {
   const SettingModel = mongoose.model('settings');
-  const dataId = await SettingModel.findOne({type: 'dataId'});
+  const dataId = await SettingModel.findOne({_id: 'dataId'});
   if(!dataId) throwErr(500, 'data id error');
   const obj = {};
   obj[type] = dataId[type] + number;

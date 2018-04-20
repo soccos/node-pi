@@ -1,33 +1,26 @@
 module.exports = [
   {
-    _id: 1,
-    name: 'administrator',
+    _id: 'administrator',
     description: 'administrator'
   },
   {
-    _id: 2,
-    name: 'admin',
+    _id: 'admin',
     description: 'admin'
   },
   {
-    _id: 3,
-    name: 'databaseAdmin',
-    description: 'databaseAdmin'
-  },
-  {
-    _id: 4,
-    name: 'editor',
-    description: 'editor'
-  },
-  {
-    _id: 5,
-    name: 'default',
+    _id: 'default',
     description: 'default'
   },
   {
-    _id: 6,
-    name: 'visitor',
+    _id: 'visitor',
     description: 'visitor',
-    operations: [1]
+    operations: [
+      'viewHome',
+      'viewRegister',
+      'viewLogin',
+      'login',
+      'register',
+      'viewArticle'
+    ]
   }
 ];

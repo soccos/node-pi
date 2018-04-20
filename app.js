@@ -16,8 +16,8 @@ const mongoose = require('mongoose');
     //-- initServerSettings --
     const settings = await initServerSettings();
 
-    //-- initPermissions --
-    await initPermission();
+    //-- initOperations --
+    await initOperation();
 
     //-- initRoles --
     await initRoles();
@@ -96,8 +96,8 @@ const mongoose = require('mongoose');
   }
 })();
 
-/*//-- initPermissions --
-async function initPermission() {
+/*//-- initOperations --
+async function initOperation() {
   const OperationModel = require('./dataModels/OperationModel');
   const operations = await OperationModel.find({});
   const defaultOperations = require('./default/defaultOperations');
@@ -110,8 +110,9 @@ async function initPermission() {
     console.log(`done.`);
   }
 }*/
-async function initPermission() {
+async function initOperation() {
   const OperationModel = require('./dataModels/OperationModel');
+  await OperationModel.deleteMany({});
   const SettingModel = require('./dataModels/SettingModel');
   const operations = require('./settings/operations');
   const operationsOfDB = await OperationModel.find({});
@@ -129,12 +130,11 @@ async function initPermission() {
       }
     };
     getOperation(operations);
-    for(let name of arr) {
-      const _id = await SettingModel.getNewId('operation', 1);
+    arr.push('viewHome');
+    for(let _id of arr) {
       const newOperation = OperationModel({
         _id,
-        name,
-        description: name
+        description: _id
       });
       await newOperation.save();
     }
@@ -145,6 +145,8 @@ async function initPermission() {
 //-- initRoles --
 async function initRoles() {
   const RoleModel = require('./dataModels/RoleModel');
+  await RoleModel.deleteMany({});
+  const OperationModel = require('./dataModels/OperationModel');
   const roles = await RoleModel.find({});
   const defaultRoles = require('./default/defaultRoles');
   if(roles.length === 0) {
@@ -153,6 +155,11 @@ async function initRoles() {
       const role = RoleModel(p);
       await role.save();
     }));
+    const administrator = await RoleModel.findOne({_id: 'administrator'});
+    if(!administrator) throwErr(500, 'not found administrator');
+    const operations = await OperationModel.find({});
+    const o = operations.map(operation => operation._id);
+    await administrator.update({operations: o});
     console.log(`done.`);
   }
 }
@@ -165,12 +172,12 @@ async function initServerSettings() {
   const settings = {};
   if(defaultSettings.length === settingsOfDB.length) {
     for(let s of settingsOfDB) {
-      settings[s.type] = s;
+      settings[s._id] = s;
     }
   } else if(settingsOfDB.length === 0){
     console.log(`init settings...`);
     await Promise.all(defaultSettings.map(async s => {
-      settings[s.type] = s;
+      settings[s._id] = s;
       const setting = SettingModel(s);
       await setting.save();
     }));

@@ -41,12 +41,12 @@ fn.ensurePermission = async (ctx, next) => {
   ctx.getOperationByPath = fn.getOperationByPath;
   const userOperations = {};
   if(!data.user) {
-    const rote = await db.RoleModel.findOne({name: 'visitor'});
+    const rote = await db.RoleModel.findOne({_id: 'visitor'});
     if(!rote) throwErr(500, 'the role of visitor does not exist');
     await Promise.all(rote.operations.map(async _id => {
       const operation = await db.OperationModel.findOne({_id});
       if(operation){
-        userOperations[operation.name] = operation;
+        userOperations[operation._id] = operation;
       }
     }))
   } else {
@@ -55,8 +55,8 @@ fn.ensurePermission = async (ctx, next) => {
     }
     await Promise.all(data.user.roles.map(async _id => {
       const operation = await db.OperationModel.findOne({_id});
-      if(operation && !userOperations[operation.name]) {
-        userOperations[operation.name] = operation;
+      if(operation && !userOperations[operation._id]) {
+        userOperations[operation._id] = operation;
       }
     }));
   }
